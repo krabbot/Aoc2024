@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class dec7 {
     public static void main(String[] args) throws FileNotFoundException {
+
         File input = new File("input7.txt");
         Scanner data = new Scanner(input);
 
@@ -29,7 +30,6 @@ public class dec7 {
 
         }
         System.out.println(sum);
-
     }
 
 
