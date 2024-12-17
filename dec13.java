@@ -16,6 +16,8 @@ public class dec13 {
         ArrayList<int[]> buttonB = new ArrayList<int[]>();
         ArrayList<int[]> prizePos = new ArrayList<int[]>();
 
+        
+
         String s[];
 
         int index = 0;
