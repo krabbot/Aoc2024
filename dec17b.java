@@ -1,24 +1,19 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
 
 /*Borde fungera men gör inte det */
 
 
 public class dec17b {
-    public static void main(String[] args) throws FileNotFoundException {
-
+    public static void main(String[] args){
         
         //int A = 27575648;
         //int A = 117440;
-        int index = 0;
+        long index = 0;
         //int[] program = {0,3,5,4,3,0};
+        //int[] program = {0,1,5,4,3,0};
         ArrayList<Integer> output = new ArrayList<Integer>();
-        int A = index;
+        long A = index;
         int B = 0;
         int C = 0;
 
@@ -56,12 +51,11 @@ public class dec17b {
                     } 
                     case 6: B = bdv(A, B, C, operand); break;
                     case 7: C = cdv(A, B, C, operand); break;
+                    default: System.out.println("va"); break;
                 }
                 pointer +=2;
             }
-
-
-            if(output.size()>8)System.out.println( index + ", " +output.toString());
+            if(output.size()>10)System.out.println( index + ", " +output.toString());
 
             OK = false;
             if(program.length == output.size()){
@@ -77,42 +71,49 @@ public class dec17b {
             //System.out.println(index);
             index++;
             output.clear();
+
         }
     }
 
-    private static int adv(int A, int B, int C, int operand){
-        int numerator = A;
-        int denomiator = (int) Math.pow(2, combo(operand,A,B,C));
-        return numerator/denomiator;
+    private static int adv(long A, int B, int C, int operand){
+        long numerator = A;
+        long denomiator = (long) Math.pow(2, combo(operand,A,B,C));
+        return Integer.parseInt(numerator/denomiator+"");
     }
 
     private static int bxl(int B, int operand){
         return B^operand;
     }
 
-    private static int bst(int A, int B, int C, int operand){
-        return combo(operand, A, B, C) & 0b111;
+    private static int bst(long A, int B, int C, int operand){
+        return (int)(combo(operand, A, B, C)) & 0b111;
     }
-    private static int jnz(int A, int B, int C, int operand, int pointer){
+    private static int jnz(long A, int B, int C, int operand, int pointer){
         if(A == 0) return pointer;
         return operand-2;
     }
 
-    private static int out(int A, int B, int C, int operand){
-        return combo(operand, A, B, C) & 0b111;
+    private static int out(long A, int B, int C, int operand){
+        return ((int)(combo(operand, A, B, C)) & 0b111);
     }
 
-    private static int bxc(int A, int B, int C, int operand){
+    private static int bxc(long A, int B, int C, int operand){
         return B^C;
     }
-    private static int bdv(int A, int B, int C, int operand){
-        return adv(A, B, C, operand);
+    private static int bdv(long A, int B, int C, int operand){
+        //return adv(A, B, C, operand);
+        long numerator = A;
+        long denomiator = (long) Math.pow(2, combo(operand,A,B,C));
+        return Integer.parseInt(numerator/denomiator+"");
     }
-    private static int cdv(int A, int B, int C, int operand){
-        return adv(A, B, C, operand);
+    private static int cdv(long A, int B, int C, int operand){
+        //return adv(A, B, C, operand);
+        long numerator = A;
+        long denomiator = (long) Math.pow(2, combo(operand,A,B,C));
+        return Integer.parseInt(numerator/denomiator+"");
     }
 
-    private static int combo(int operand, int A, int B, int C){
+    private static long combo(int operand, long A, int B, int C){
         switch(operand){
             case 4: return A;
             case 5: return B;

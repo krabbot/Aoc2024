@@ -13,12 +13,13 @@ public class dec17 {
     public static void main(String[] args) throws FileNotFoundException {
 
         //int A = 27575648;
-        int A = 117440;
+        int A = 729;
         int B = 0;
         int C = 0;
 
         //int[] program = {2,4,1,2,7,5,4,1,1,3,5,5,0,3,3,0};
-        int[] program = {0,3,5,4,3,0};
+        //int[] program = {0,3,5,4,3,0};
+        int[] program = {0,1,5,4,3,0};
 
         int pointer = 0;
         int opcode;
@@ -31,7 +32,7 @@ public class dec17 {
             switch (opcode) {
                 case 0: A = adv(A, B, C, operand); break;
                 case 1: B = bxl(B, operand); break;
-                case 2: C = B = bst(A, B, C, operand); break;
+                case 2: B = bst(A, B, C, operand); break;
                 case 3: pointer = jnz(A, B, C, operand, pointer); break;
                 case 4: B =  bxc(A, B, C, operand); break;
                 case 5: System.out.print(out(A,B,C,operand) + ","); break;
@@ -41,6 +42,7 @@ public class dec17 {
 
             pointer +=2;
         }
+        System.out.println("A: " + A+ ", B: " + B + ", C: " + C);
     }
 
     private static int adv(int A, int B, int C, int operand){
